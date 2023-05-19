@@ -9,7 +9,7 @@ const Banner = () => {
                             <a href="#slide4" className="btn btn-circle">❮</a>
                             <a href="#slide2" className="btn btn-circle">❯</a>
                         </div>
-                        <div className="max-w-lg text-justify">
+                        <div className="max-w-xl p-7 bg-[#0000005d] rounded-xl text-justify text-[white]">
                             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                             <p className="mb-5">Welcome to the ToyBox, where curious minds come to explore and discover the wonders of science through play! In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>
                             <button className="btn btn-primary">Get Started</button>
@@ -25,7 +25,7 @@ const Banner = () => {
                             <a href="#slide1" className="btn btn-circle">❮</a>
                             <a href="#slide3" className="btn btn-circle">❯</a>
                         </div>
-                        <div className="max-w-lg text-justify">
+                        <div className="max-w-xl p-7 bg-[#0000005d] rounded-xl text-justify text-[white]">
                             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                             <p className="mb-5">Welcome to the ToyBox, where curious minds come to explore and discover the wonders of science through play! In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>
                             <button className="btn btn-primary">Get Started</button>
@@ -41,7 +41,7 @@ const Banner = () => {
                             <a href="#slide2" className="btn btn-circle">❮</a>
                             <a href="#slide4" className="btn btn-circle">❯</a>
                         </div>
-                        <div className="max-w-lg text-justify">
+                        <div className="max-w-xl p-7 bg-[#0000005d] rounded-xl text-justify text-[white]">
                             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                             <p className="mb-5">Welcome to the ToyBox, where curious minds come to explore and discover the wonders of science through play! In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>
                             <button className="btn btn-primary">Get Started</button>
@@ -57,7 +57,7 @@ const Banner = () => {
                             <a href="#slide3" className="btn btn-circle">❮</a>
                             <a href="#slide1" className="btn btn-circle">❯</a>
                         </div>
-                        <div className="max-w-lg text-justify">
+                        <div className="max-w-xl p-7 bg-[#0000005d] rounded-xl text-justify text-[white]">
                             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                             <p className="mb-5">Welcome to the ToyBox, where curious minds come to explore and discover the wonders of science through play! In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>
                             <button className="btn btn-primary">Get Started</button>

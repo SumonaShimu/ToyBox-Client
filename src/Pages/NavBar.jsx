@@ -4,9 +4,9 @@ const NavBar = () => {
     const navitems = (
         <>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/all-toys">All Toys</Link></li>
-          <li><Link to="/add-a-toy">Add a Toy</Link></li>
-          <li><Link to="/my-toys">My Toys</Link></li>
+          <li><Link to="/alltoys">All Toys</Link></li>
+          <li><Link to="/addtoy">Add a Toy</Link></li>
+          <li><Link to="/mytoys">My Toys</Link></li>
           <li><Link to="/blog">Blog</Link></li>
         </>
       );
@@ -34,7 +34,7 @@ const NavBar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <a className="btn btn-primary">Login</a>
+            <Link to='/login' className="btn btn-primary">Login</Link>
           </div>
         </div>
       )
