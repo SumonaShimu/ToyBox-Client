@@ -5,7 +5,7 @@ import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn,signInWithGoogle } = useContext(AuthContext)
 
     const handleLogin = event => {
         event.preventDefault();
@@ -29,6 +29,17 @@ const Login = () => {
                 form.reset();
             })
             .catch(error => console.log(error));
+    }
+
+    const googleLogin=()=>{
+        signInWithGoogle()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     return (
@@ -59,7 +70,7 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input type="submit" className="btn btn-primary" value='Login' />
-                            <button className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
+                            <button onClick={googleLogin} className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
                             <small className="mx-auto">
                                 Don't have an account? Please<Link to='/reg' className="link link-info link-hover"> Register</Link>
                             </small>

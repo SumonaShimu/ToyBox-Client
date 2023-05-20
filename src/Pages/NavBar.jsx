@@ -47,7 +47,7 @@ const NavBar = () => {
               className='w-10 h-10 rounded-full'
               data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName}
             />
-            <Tooltip id="my-tooltip" place="bottom"/>
+            <Tooltip id="my-tooltip" place="top" offset = "{'bottom': 50}"/>
           </>) :
             (<Link to="/login" className="btn btn-primary">Login</Link>)
         }
