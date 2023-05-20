@@ -1,7 +1,40 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProvider";
+import Swal from "sweetalert2";
 
 const Registration = () => {
+    const { createUser,updateUserInfo } = useContext(AuthContext);
+    const handleSignUp = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+        if(password<6) {
+            alert('Password must contain at least 6 characters!');
+            return;
+        }
+        console.log(name, email, password)
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: `Welcome ${name}`,
+                    html:'Your Registration is complete!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                updateUserInfo(name,photo)
+            })
+            .catch(error => console.log(error))
+    }
+
     return (
         <div className="hero w-full min-h-screen" style={{ backgroundImage: `url("https://t3.ftcdn.net/jpg/03/52/73/34/360_F_352733401_JvKktwNtBzmwP9F3Q2tvST7IPxiWDYIN.jpg")` }}>
             {/* form+img container */}
@@ -14,7 +47,7 @@ const Registration = () => {
                 </div>
                 {/* form */}
                 <div className="md:min-w-[1/2] card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                    <form onSubmit={handleSignUp} className="card-body">
                         <h1 className="text-5xl font-bold mb-10">Please Register!</h1>
                         <div className="form-control">
                             <label className="label">
@@ -38,17 +71,17 @@ const Registration = () => {
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
                             </label>
-                            <input type="url" name="photo" placeholder="your photo url" className="input input-bordered"/>
+                            <input type="url" name="photo" placeholder="your photo url" className="input input-bordered" />
 
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Register</button>
+                            <input type="submit" className="btn btn-primary" value='Register' />
                             <button className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">register with </span> <FcGoogle></FcGoogle></button>
                             <small className="mx-auto">
                                 Already have an account? Please<Link to='/login' className="link link-info link-hover"> Login</Link>
                             </small>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 {/* images 2 only shown in large device */}
                 <div className="my-2 w-72 hidden lg:block">

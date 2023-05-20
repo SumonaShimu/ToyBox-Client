@@ -7,7 +7,7 @@ const CategoryTabs = ({ allToys }) => {
     const probToys = allToys.filter(toy => toy.subcategory === 'Problem Solving');
     console.log(geoToys, mathToys, probToys)
     return (
-        <div className="conatiner flex justify-center text-center">
+        <div className="flex justify-center text-center mx-5">
             <Tabs>
                 <h1 className='font-bold text-4xl py-5'>Categories</h1>
                 <p className=''>In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>

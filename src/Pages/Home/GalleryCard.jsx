@@ -16,9 +16,7 @@ const GalleryCard = ({ item }) => {
                         <h1>{item.name}</h1>
                         <p>$ {item.price}</p>
                         <small>({item.rating})</small>
-                        <p>
-                            <StarRating rating={item.rating}/>
-                        </p>
+                        <StarRating rating={item.rating}/>
                     </div>
                 </div>
             )}

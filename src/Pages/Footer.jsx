@@ -6,6 +6,8 @@ const Footer = () => {
         <footer className="footer p-10 bg-base-300 text-base-content mx-auto justify-around">
             <div className="">
                 <span className="footer-title">About us</span>
+                <img src="https://raw.githubusercontent.com/SumonaShimu/ToyData/main/logoo.png" className="h-20 w-20"></img>
+                <h1>ToyBox</h1>
                 <p>The largest online toyshop since 1995</p>
                 <p> &copy; 2023 ToyBox All Rights Reserved</p>
             </div>

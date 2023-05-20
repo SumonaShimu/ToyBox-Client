@@ -11,6 +11,10 @@ import Login from './Pages/Login/Login.jsx';
 import Registration from './Pages/Registration/Registration.jsx';
 import AllToys from './Pages/AllToys';
 import AddToy from './Pages/private/AddToy';
+import AuthProvider from './Pages/AuthProvider';
+import PrivateRoute from './Pages/private/PrivateRoute';
+import Details from './Pages/private/Details';
+
 
 const router = createBrowserRouter([
   {
@@ -24,10 +28,16 @@ const router = createBrowserRouter([
       {
         path: "/alltoys",
         element: <AllToys></AllToys>,
+        loader:()=>fetch('https://toybox-server.vercel.app/alltoys')
       },
       {
-        path: "/addToy",
-        element:<AddToy></AddToy>,
+        path: "/add-a-toy",
+        element: <PrivateRoute><AddToy></AddToy></PrivateRoute>,
+      },
+      {
+        path: "/details/:id",
+        element: <PrivateRoute><Details></Details></PrivateRoute>,
+        loader:({params})=>fetch(`https://toybox-server.vercel.app/toy/${params.id}`)
       },
       {
         path: "/login",
@@ -43,6 +53,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

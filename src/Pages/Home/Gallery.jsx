@@ -1,4 +1,3 @@
-import { useState } from "react";
 import GalleryCard from "./GalleryCard";
 
 const Gallery = ({ allToys }) => {
