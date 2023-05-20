@@ -4,7 +4,7 @@ import StarRating from "./StarRating";
 const TabCard = ({ toy }) => {
     const { name, pictureURL, price, rating } = toy;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto text-center">
+        <div className="card md:w-96 w-full bg-base-100 shadow-xl mx-auto text-center">
             <div className="card-body">
                 <h2 className="font-bold text-xl">{name}</h2>
                 <StarRating rating={rating}></StarRating>
