@@ -6,7 +6,8 @@ import Swal from "sweetalert2";
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
-    const [ascending,setAscending]=useState([])
+    const [control,setControl]=useState(false);
+    const [ascending, setAscending] = useState([])
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -24,7 +25,8 @@ const MyToys = () => {
                 setAscending(data)
                 console.log(data)
             })
-    }, [url]);
+    }, [control]);
+
 
     const descending = [...ascending].sort((a, b) => b.price - a.price);
     //update toys
@@ -53,11 +55,13 @@ const MyToys = () => {
                 console.log(data);
                 if (data.modifiedCount > 0) {
                     Swal.fire(
-                        'Good job!',
+                        'Done!',
                         'Toy Updated successfully!',
                         'success'
                     )
+                    setControl(!control);
                 }
+                
             })
     }
     //delete toys
@@ -78,8 +82,8 @@ const MyToys = () => {
                     icon: 'success',
                     title: 'Your Toy has been deleted',
                     showConfirmButton: false,
-                    timer: 1500
-                  })
+                    timer: 1000
+                })
                 fetch(`https://toybox-server.vercel.app/toy/${id}`, {
                     method: 'DELETE'
                 })
@@ -103,13 +107,13 @@ const MyToys = () => {
             }
         })
     }
-    
+
     return (
         <div className="text-center">
             <h1 className='font-bold text-4xl py-5'>My Toys</h1>
             <p className=''>Here, you as a seller can update, delete or modify your toys.</p>
-            <button onClick={()=>setToys(ascending)} className="btn btn-success mt-5">Ascending</button>
-            <button onClick={()=>setToys(descending)} className="btn btn-error ml-3 mb-5">Descending</button>
+            <button onClick={() => setToys(ascending)} className="btn btn-success mt-5">Ascending</button>
+            <button onClick={() => setToys(descending)} className="btn btn-error ml-3 mb-5">Descending</button>
             <table className="table table-compact w-full my-10">
                 <thead>
                     <tr>

@@ -2,7 +2,7 @@ import { BsArrowBarRight } from "react-icons/bs";
 
 const Us = () => {
     return (
-        <div className='flex md:flex-row flex-col my-10'>
+        <div data-aos="fade-right" className='flex md:flex-row flex-col my-10'>
             <div className="w-full md:w-1/2 p-5">
                 <img src="https://thepeartree.co.za/wp-content/uploads/2020/08/creativity.jpg" className="w-full h-full rounded-xl border-4 shadow-md border-slate-300" />
             </div>

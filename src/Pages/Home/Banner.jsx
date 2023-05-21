@@ -1,6 +1,6 @@
 const Banner = () => {
     return (
-        <div className="carousel w-full">
+        <div data-aos="flip-down" className="carousel w-full">
             <div id="slide1" className="carousel-item relative w-full">
                 <div className="hero h-[100vh]" style={{ backgroundImage: `url("https://raw.githubusercontent.com/SumonaShimu/ToyData/main/edu4.png")` }}>
                     <div className="hero-overlay bg-opacity-60"></div>
