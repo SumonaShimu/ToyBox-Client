@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Registration = () => {
     const { createUser,updateUserInfo } = useContext(AuthContext);
@@ -13,10 +14,6 @@ const Registration = () => {
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
-        if(password<6) {
-            alert('Password must contain at least 6 characters!');
-            return;
-        }
         console.log(name, email, password)
         createUser(email, password)
             .then(result => {
@@ -32,7 +29,10 @@ const Registration = () => {
                 })
                 updateUserInfo(name,photo)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                toast.error(`${error.message}`)
+                console.log(error)
+            })
     }
 
     return (

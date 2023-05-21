@@ -1,11 +1,16 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const { signIn,signInWithGoogle } = useContext(AuthContext)
+    const { signIn, signInWithGoogle,setUser,setLoading } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -13,33 +18,45 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;
+                setUser(user)
                 console.log(user);
                 Swal.fire({
                     position: 'top',
                     icon: 'success',
                     title: `Welcome ${user?.displayName
-                    }!`,
-                    html:'Login Successful!',
+                        }!`,
+                    html: 'Login Successful!',
                     showConfirmButton: false,
                     timer: 1500
                 })
+                navigate(from, { replace: true })
+                setLoading(false);
                 form.reset();
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                setLoading(false);
+                console.log(error);
+                toast.error(`${error.message}`)
+            })
     }
 
-    const googleLogin=()=>{
+    const googleLogin = () => {
         signInWithGoogle()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replace: true })
+                setLoading(false);
+                toast.success("Successfully logged in!");
+            })
+            .catch(error => {
+                console.log(error)
+                toast.error(`${error.message}`)
+            })
     }
 
     return (

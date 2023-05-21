@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
-    const [toys, setToys] = useState([])
+    const [toys, setToys] = useState([]);
+    const [ascending,setAscending]=useState([])
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -20,9 +21,12 @@ const MyToys = () => {
             .then(res => res.json())
             .then(data => {
                 setToys(data)
+                setAscending(data)
                 console.log(data)
             })
     }, [url]);
+
+    const descending = [...ascending].sort((a, b) => b.price - a.price);
     //update toys
     const updateToy = (id) => {
         event.preventDefault();
@@ -98,10 +102,13 @@ const MyToys = () => {
             }
         })
     }
+    
     return (
         <div className="text-center">
             <h1 className='font-bold text-4xl py-5'>My Toys</h1>
             <p className=''>Here, you as a seller can update, delete or modify your toys.</p>
+            <button onClick={()=>setToys(ascending)} className="btn btn-success mt-5">Ascending</button>
+            <button onClick={()=>setToys(descending)} className="btn btn-error ml-3 mb-5">Descending</button>
             <table className="table table-compact w-full my-10">
                 <thead>
                     <tr>
@@ -150,7 +157,7 @@ const MyToys = () => {
                                                     <input name="description" type="text" defaultValue={toy.description} placeholder="your product description" className="input input-bordered w-full h-24" />
                                                 </label>
                                                 <div className="modal-action">
-                                                    <button type="submit" className="btn"><label htmlFor={`modal-${toy._id}`}  >Yay!</label></button>
+                                                    <button type="submit" className="btn"><label htmlFor={`modal-${toy._id}`}  >Update</label></button>
                                                 </div>
 
                                             </form>
