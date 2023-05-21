@@ -28,6 +28,7 @@ const Login = () => {
         else {
             signIn(email, password)
                 .then(result => {
+                    setError('')
                     const user = result.user;
                     setUser(user)
                     console.log(user);
@@ -61,10 +62,10 @@ const Login = () => {
                 navigate(from, { replace: true })
                 setLoading(false);
                 toast.success("Successfully logged in!");
+                setError('')
             })
             .catch(error => {
                 console.log(error)
-                setError(error.message)
             })
     }
 
