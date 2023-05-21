@@ -3,6 +3,9 @@ import Banner from './Banner';
 import CategoryTabs from './CategoryTabs';
 import Gallery from './Gallery';
 import { useEffect, useState } from 'react';
+import Sponsored from './Sponsored';
+import Us from './Us';
+
 
 const Main = () => {
     const [allToys,setToys]=useState([])
@@ -15,7 +18,9 @@ const Main = () => {
         <div>
             <Banner></Banner>
             <Gallery allToys={allToys}></Gallery>
+            <Us></Us>
             <CategoryTabs allToys={allToys}></CategoryTabs>
+            <Sponsored></Sponsored>
         </div>
     );
 };

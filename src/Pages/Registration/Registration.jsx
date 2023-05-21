@@ -46,7 +46,7 @@ const Registration = () => {
                     <img src="https://raw.githubusercontent.com/SumonaShimu/ToyData/main/edu22.jpg" className=" shadow-2xl rounded-lg my-2 w-64 ms-auto" />
                 </div>
                 {/* form */}
-                <div className="md:min-w-[1/2] card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="md:min-w-[1/2] card flex-shrink-0 w-full my-10 max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSignUp} className="card-body">
                         <h1 className="text-5xl font-bold mb-10">Please Register!</h1>
                         <div className="form-control">

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import StarRating from './StarRating';
+import { FcRedo } from "react-icons/fc";
+import { BsArrow90DegRight, BsArrowRightCircle, BsArrowRightCircleFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const GalleryCard = ({ item }) => {
     const [isHovered, setIsHovered] = useState(false);
-
     return (
         <div className="card transform hover:scale-105 transition duration-300 ease-in-out bg-base-100 shadow-xl relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <figure className="w-full h-96">
@@ -17,6 +19,9 @@ const GalleryCard = ({ item }) => {
                         <p>$ {item.price}</p>
                         <small>({item.rating})</small>
                         <StarRating rating={item.rating}/>
+                        <Link to={`/details/${item._id}`} className='w-8 h-8 rounded-full mx-auto my-4 block'>
+                            <BsArrowRightCircleFill></BsArrowRightCircleFill>
+                        </Link>
                     </div>
                 </div>
             )}
