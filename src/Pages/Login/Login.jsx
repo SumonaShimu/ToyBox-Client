@@ -5,6 +5,7 @@ import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from "../Home/Hooks/useTitle";
 
 const Login = () => {
     const { signIn, signInWithGoogle, setUser, setLoading } = useContext(AuthContext)
@@ -12,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-
+    useTitle('Login')
     const handleLogin = event => {
         setError('')
         event.preventDefault();

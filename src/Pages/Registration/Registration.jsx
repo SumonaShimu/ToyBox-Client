@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useTitle from "../Home/Hooks/useTitle";
 
 const Registration = () => {
+    useTitle('Register');
     const { createUser,updateUserInfo } = useContext(AuthContext);
     const handleSignUp = event => {
         event.preventDefault();

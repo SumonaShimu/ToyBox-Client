@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { RiDeleteBinFill, RiEdit2Fill } from "react-icons/ri";
 import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../Home/Hooks/useTitle";
 
 const MyToys = () => {
+    useTitle('Mytoys')
     const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
     const [control,setControl]=useState(false);

@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../Home/Hooks/useTitle";
 
 const AddToy = () => {
+    useTitle('addToy')
     const { user } = useContext(AuthContext);
     let userName = '', userEmail = ''
     if (user) {
