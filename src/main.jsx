@@ -17,6 +17,7 @@ import Details from './Pages/private/Details';
 import MyToys from './Pages/private/MyToys';
 import Error from './Pages/Error';
 import { ToastContainer } from 'react-toastify';
+import Blog from './Pages/Blog';
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/reg",
         element: <Registration />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       }
     ]
   },
