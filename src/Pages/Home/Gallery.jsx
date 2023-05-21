@@ -4,7 +4,7 @@ const Gallery = ({ allToys }) => {
     
     return (
         <div className='my-10'>
-            <div className='text-center max-w-lg mx-auto'>
+            <div className='text-center max-w-4xl mx-auto'>
                 <h1 className='font-bold text-4xl py-5'>Photo Galary</h1>
                 <p className=''>In this section, children can embark on exciting scientific adventures, conduct fun experiments, and learn about various scientific principles in an interactive and engaging way.</p>
             </div>

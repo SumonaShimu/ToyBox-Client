@@ -15,6 +15,7 @@ import AuthProvider from './Pages/AuthProvider';
 import PrivateRoute from './Pages/private/PrivateRoute';
 import Details from './Pages/private/Details';
 import MyToys from './Pages/private/MyToys';
+import Error from './Pages/Error';
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "*",
+    element: <Error></Error>,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
