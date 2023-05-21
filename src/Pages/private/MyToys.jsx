@@ -73,12 +73,13 @@ const MyToys = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your Toy has been deleted.',
-                    'success'
-                )
-
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your Toy has been deleted',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
                 fetch(`https://toybox-server.vercel.app/toy/${id}`, {
                     method: 'DELETE'
                 })

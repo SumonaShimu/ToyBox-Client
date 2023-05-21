@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
@@ -7,44 +7,52 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-    const { signIn, signInWithGoogle,setUser,setLoading } = useContext(AuthContext)
+    const { signIn, signInWithGoogle, setUser, setLoading } = useContext(AuthContext)
+    const [error, setError] = useState('')
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
+        setError('')
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
-
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                setUser(user)
-                console.log(user);
-                Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: `Welcome ${user?.displayName
-                        }!`,
-                    html: 'Login Successful!',
-                    showConfirmButton: false,
-                    timer: 1500
+        if (password.length < 6) {
+            setError('password must contain more then 6 letters!');
+            return;
+        }
+        else {
+            signIn(email, password)
+                .then(result => {
+                    const user = result.user;
+                    setUser(user)
+                    console.log(user);
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: `Welcome ${user?.displayName
+                            }!`,
+                        html: 'Login Successful!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    navigate(from, { replace: true })
+                    setLoading(false);
+                    form.reset();
                 })
-                navigate(from, { replace: true })
-                setLoading(false);
-                form.reset();
-            })
-            .catch(error => {
-                setLoading(false);
-                console.log(error);
-                toast.error(`${error.message}`)
-            })
+                .catch(error => {
+                    setLoading(false);
+                    console.log(error);
+                    setError(error.message)
+                })
+        }
     }
 
     const googleLogin = () => {
+        setError('')
         signInWithGoogle()
             .then(result => {
                 const loggedUser = result.user;
@@ -55,7 +63,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error)
-                toast.error(`${error.message}`)
+                setError(error.message)
             })
     }
 
@@ -74,6 +82,7 @@ const Login = () => {
                     <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <h1 className="text-5xl font-bold mb-10">Please Login!</h1>
+                            <h1>{error ? `${error}` : ''}</h1>
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
@@ -87,11 +96,11 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <input type="submit" className="btn btn-primary" value='Login' />
-                            <button onClick={googleLogin} className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
-                            <small className="mx-auto">
-                                Don't have an account? Please<Link to='/reg' className="link link-info link-hover"> Register</Link>
-                            </small>
                         </div>
+                        <button onClick={googleLogin} className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
+                        <small className="mx-auto">
+                            Don't have an account? Please<Link to='/reg' className="link link-info link-hover"> Register</Link>
+                        </small>
                     </form>
                 </div>
             </div>

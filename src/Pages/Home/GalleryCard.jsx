@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import StarRating from './StarRating';
-import { FcRedo } from "react-icons/fc";
-import { BsArrow90DegRight, BsArrowRightCircle, BsArrowRightCircleFill } from 'react-icons/bs';
+import { BsArrowRightCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const GalleryCard = ({ item }) => {
