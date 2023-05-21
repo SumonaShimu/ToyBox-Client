@@ -18,6 +18,7 @@ const AddToy = () => {
         const form = event.target;
         const name=form.name.value;
         const pictureURL=form.url.value;
+        const description=form.description.value;
         const price=parseFloat(form.price.value);
         const quantity=parseFloat(form.quantity.value);
         const rating=parseFloat(form.rating.value);
@@ -26,7 +27,7 @@ const AddToy = () => {
         const subcategory=selectedValue;
 
         const newItem={
-            name,pictureURL,price,quantity,rating,sellerEmail,sellerName,subcategory
+            name,pictureURL,price,quantity,rating,sellerEmail,sellerName,subcategory,description
         }
         const itemjson=JSON.stringify(newItem);
         fetch('https://toybox-server.vercel.app/addtoy', {
@@ -47,7 +48,11 @@ const AddToy = () => {
     }
     return (
         <div>
-            <form onSubmit={addItem} className="bg-primary mx-10 my-50 p-10 grid md:grid-cols-2 grid-cols-1 gap-3 w-[90%]">
+           <div className="text-center">
+           <h1 className='font-bold text-4xl py-5'>Add a Toy</h1>
+            <p className=''>Here, you as a seller can post your toys with the respective information.</p>
+           </div>
+            <form onSubmit={addItem} className="bg-primary rounded-xl m-10 p-10 grid md:grid-cols-2 grid-cols-1 gap-3 w-[90%]">
                 <label className="input-group">
                     <span>Picture</span>
                     <input name='url' type="url" placeholder="give the product image url" className="input input-bordered w-full" />
@@ -79,7 +84,6 @@ const AddToy = () => {
                     <span>Available quantity</span>
                     <input name='quantity' type="number" placeholder="10" className="input input-bordered w-full" />
                 </label>
-
                 <label className="input-group">
                     <span>Sub Category</span>
                     <select className="select select-bordered" onChange={handleSelectChange} value={selectedValue}>
@@ -89,6 +93,10 @@ const AddToy = () => {
                         <option value="Math">Math and Counting</option>
                         <option value="Others">Others</option>
                     </select>
+                </label>
+                <label className="input-group col-span-2 ">
+                    <span>Description</span>
+                    <input name='description' type="text" placeholder="your product description" className="input input-bordered w-full h-24" />
                 </label>
                 <input type="submit" value="Add Product" className="btn btn-secondary text-white col-span-2 mx-auto"/>
             </form>

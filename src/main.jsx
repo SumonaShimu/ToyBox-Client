@@ -14,6 +14,7 @@ import AddToy from './Pages/private/AddToy';
 import AuthProvider from './Pages/AuthProvider';
 import PrivateRoute from './Pages/private/PrivateRoute';
 import Details from './Pages/private/Details';
+import MyToys from './Pages/private/MyToys';
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         path: "/details/:id",
         element: <PrivateRoute><Details></Details></PrivateRoute>,
         loader:({params})=>fetch(`https://toybox-server.vercel.app/toy/${params.id}`)
+      },
+      {
+        path: "/mytoys",
+        element: <PrivateRoute><MyToys></MyToys></PrivateRoute>,
       },
       {
         path: "/login",
