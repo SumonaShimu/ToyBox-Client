@@ -21,36 +21,31 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
-        if (password.length < 6) {
-            setError('password must contain more then 6 letters!');
-            return;
-        }
-        else {
-            signIn(email, password)
-                .then(result => {
-                    setError('')
-                    const user = result.user;
-                    setUser(user)
-                    console.log(user);
-                    Swal.fire({
-                        position: 'top',
-                        icon: 'success',
-                        title: `Welcome ${user?.displayName
-                            }!`,
-                        html: 'Login Successful!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    navigate(from, { replace: true })
-                    setLoading(false);
-                    form.reset();
+        signIn(email, password)
+            .then(result => {
+                setError('')
+                const user = result.user;
+                setUser(user)
+                console.log(user);
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: `Welcome ${user?.displayName
+                        }!`,
+                    html: 'Login Successful!',
+                    showConfirmButton: false,
+                    timer: 1500
                 })
-                .catch(error => {
-                    setLoading(false);
-                    console.log(error);
-                    setError(error.message)
-                })
-        }
+                navigate(from, { replace: true })
+                setLoading(false);
+                form.reset();
+            })
+            .catch(error => {
+                setLoading(false);
+                console.log(error);
+                toast.error(`${error.message}`,{
+                    position: "top-center"})
+            })
     }
 
     const googleLogin = () => {
@@ -66,6 +61,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error)
+                setError(error.message)
             })
     }
 
@@ -88,22 +84,22 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" />
+                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name="password" placeholder="password" className="input input-bordered" />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
                             <input type="submit" className="btn btn-primary" value='Login' />
                         </div>
-                        <button onClick={googleLogin} className="btn btn-primary text-2xl text-black my-3 "><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
                         <small className="mx-auto">
                             Don't have an account? Please<Link to='/reg' className="link link-info link-hover"> Register</Link>
                         </small>
                     </form>
+                    <button onClick={googleLogin} className="btn btn-primary text-2xl text-black mb-8 mx-8"><span className="text-xs">Login with </span> <FcGoogle></FcGoogle></button>
                 </div>
             </div>
         </div>

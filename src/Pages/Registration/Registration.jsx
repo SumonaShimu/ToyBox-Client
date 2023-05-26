@@ -16,6 +16,11 @@ const Registration = () => {
         const email = form.email.value;
         const photo = form.photo.value;
         const password = form.password.value;
+        if (password.length < 6) {
+            toast.error("Password must contain atleast 6 letters!",{
+                position: "top-center"});
+            return;
+        }
         console.log(name, email, password)
         createUser(email, password)
             .then(result => {
@@ -32,7 +37,8 @@ const Registration = () => {
                 updateUserInfo(name,photo)
             })
             .catch(error => {
-                toast.error(`${error.message}`)
+                toast.error(`${error.message}`,{
+                    position: "top-center"})
                 console.log(error)
             })
     }
